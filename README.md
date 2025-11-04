@@ -23,38 +23,38 @@ git clone https://github.com/oracle/docker-images.git
 cd docker-images/OracleDatabase/SingleInstance/dockerfiles
 
 ### 3.Build Oracle Database Image
-# Windows
+**Windows**
 ./buildContainerImage.sh -v 21.3.0 -x
 
-# GCP (requires sudo)
+**GCP (requires sudo)**
 sudo ./buildContainerImage.sh -v 21.3.0 -x
 
 ### 4.Run Oracle Database Container
-# Windows
+**Windows**
 docker run --name oraclexe -d --restart unless-stopped \
   -p 1521:1521 -p 5500:5500 \
   -e ORACLE_PWD=ORACLE oracle/database:21.3.0-xe
 
-# GCP
+**GCP**
 sudo docker run --name oraclexe -d --restart unless-stopped \
   -p 1521:1521 -p 5500:5500 \
   -e ORACLE_PWD=ORACLE oracle/database:21.3.0-xe
 
 -Verify container logs
-# Windows
+**Windows**
 docker logs -f oraclexe
 
-# GCP
+**GCP**
 sudo docker logs -f oraclexe
 Expected output: DATABASE IS READY TO USE!
 
 ### 5.Connect Using SQLPlus
-# Windows
+**Windows**
 docker exec -it oraclexe bash
 sqlplus sys/ORACLE@//localhost:1521/XE as sysdba
 SELECT name FROM v$database;
 
-# GCP
+**GCP**
 sudo docker exec -it oraclexe bash
 sqlplus sys/ORACLE@//localhost:1521/XE as sysdba
 SELECT name FROM v$database;
